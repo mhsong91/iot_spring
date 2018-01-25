@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<bean id="test" class="com.iot.spring.Test">
-	<property name="test" value="이노무 시키"></property>
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+<!--  -->
+<context:component-scan base-package="com.iot.spring.dev1"></context:component-scan>
+	
+	<bean id="ex" class="com.iot.spring.Excute">
+	<constructor-arg ref="developer"></constructor-arg>
+ 	<property name="worker">
+		<ref bean="disinger"/>
+	</property> 
 	</bean>
+
+
+	<bean id="disinger" class="com.iot.spring.work.Disinger"></bean>
+	<bean id="developer" class="com.iot.spring.work.Developer" ></bean>
 	
-	
+
 </beans>
