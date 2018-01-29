@@ -7,10 +7,10 @@
 <!--  -->
 <context:component-scan base-package="com.iot.spring.dev1"></context:component-scan>
 	
-	<bean id="ex" class="com.iot.spring.Excute">
-	<constructor-arg ref="developer"></constructor-arg>
- 	<property name="worker">
-		<ref bean="disinger"/>
+	<bean id="ex" class="com.iot.spring.Excute"><!--ex를입력하면 아래주소로 이동하여 가지고있는것을 사용가능하다  -->
+	<constructor-arg ref="developer"></constructor-arg><!-- 생성자의  파라미터-->
+ 	<property name="worker"><!-- .set worker로 변한다 -->
+		<ref bean="disinger"/><!-- .setwork의파파라미터의값 -->
 	</property> 
 	</bean>
 

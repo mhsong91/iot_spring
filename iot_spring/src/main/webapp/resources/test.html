@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="/spring/resources/js/jquery-3.2.1.js"></script>
+
+<script>
+var gObj;
+$(document).ready(function(){
+	gObj=new gridObj("testDiv");//위에 파마리터값으로 보내진다
+	gObj.setColomns(['이름','나이']);//setColumns에 파라미터를 너어준다
+	//gObj.load(JSON.stringify(list));
+	$.ajax({
+		url:"/spring/h2",
+		success:function(res){
+			gObj.load(res);
+			gObj.init();
+		},
+		error:function(xhr){
+			alert(xhr.resonseText);
+		}
+	})
+	
+	alert("환영한다");
+});
+
+
+var gridObj=function(id){
+	var obj=document.getElementById(id);
+	var htmlStr="";
+	var colsStr="";
+	var dataStr="";
+	if(!obj){
+		alert("아디 확인해");
+	}
+	this.setColomns=function(colomns){
+		
+		for(var i=0;i<colomns.length;i++){
+			colsStr +="<th>"+colomns[i]+"</th>";
+		}
+	
+		
+	}
+	this.load=function(json){
+		
+		//json=JSON.parse(json);
+		for(var i=0;i<json.length;i++){
+			var datas=json[i];
+			dataStr+="<tr>";
+			dataStr+="<td>"+datas.name+"</td>";
+			dataStr+="<td>"+datas.age+"</td>";
+			dataStr+="</tr>";	
+		}
+	}
+	this.init=function(){
+		htmlStr +="<table border=1>";
+		htmlStr +="<tr>";
+		htmlStr +=colsStr;
+		htmlStr +="</tr>";
+		htmlStr +=dataStr;
+		htmlStr +="</table>";
+		obj.insertAdjacentHTML('afterbegin',htmlStr);//innerHTML은 전부를 읽고 위치를 찾아가나 앞에서 썻던것을 바로 찾아가서 Str를 너어준다
+	}
+}
+
+/*function init(){
+	gObj=new gridObj("testDiv");//위에 파마리터값으로 보내진다
+	gObj.setColomns(['번호','이름','주소']);//setColumns에 파라미터를 너어준다
+	var list=[];//json형식의 파마림터를 넘긴다ex=> list=[{1,이름 1,주소1},{2,이름 2,주소2}]
+	for(var i=1;i<=3;i++){
+		var datas={};
+		datas["num"]=i;
+		datas["name"]="이름"+i;
+		datas["address"]="주소"+i;
+		list.push(datas);
+	}
+}*/
+
+</script>
+<body ><!--onload="init()" html을 읽은후에 바로 함수를 실행한다 -->
+브끄^^
+<div id="testDiv"></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	//document.getElementById
+	var calObj = function(nId1, nId2, opId, rDivId) {
+		var nObj1 = document.getElementById(nId1);
+		var nObj2 = document.getElementById(nId2);
+		var opObj = document.getElementById(opId);
+		var rDivObj = document.getElementById(rDivId);
+		alert(nObj1.value);
+		var getNumber = function(obj) {
+			return parseInt(obj.value);
+		}
+		var add = function() {
+			var num1 = getNumber(nObj1);
+			var num2 = getNumber(nObj2);
+			return num1 + num2;
+		}
+		this.setResult = function() {
+			var result = 0;
+			if (opObj.value == "+") {
+				result = add();
+			}
+			if (!isNaN(result)) {
+				rDivObj.innerHTML = result;
+			}
+
+		}
+	}
+	var cObj;
+	function init() {
+		cObj = new calObj("num1", "num2", "op", "resultDiv");
+	}
+	function chvalue() {
+		cObj.setResult();
+	}
+</script>
+
+<body onload="init()">
+	숫자1:
+	<input type="text" id="num1" onchange="chvalue()">
+	<select id="op" onchange="chvalue()">
+		<option value="+">더하기</option>
+		<option value="-">뺴기</option>
+		<option value="*">곱하기</option>
+		<option value="/">나누기</option>
+	</select> 숫자2:
+	<input type="text" id="num2" onchange="chvalue()">
+	<div id="resultDiv"></div>
+</body>
+</html>

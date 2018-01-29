@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+<!--  -->
+
+	
+	<bean id="make" class="com.iot.spring.Nam">
+	<constructor-arg ref="samyang"></constructor-arg>
+ 	<property name="Nam">
+		<ref bean="sin"/>
+	</property> 
+	</bean>
+
+
+	<bean id="samyang" class="com.iot.spring.eat.Samyang"></bean>
+	<bean id="sin" class="com.iot.spring.eat.Samyang" ></bean>
+	
+
+</beans>
